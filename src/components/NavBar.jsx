@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { ShoppingCartContext } from "./ShoppingCartContext";
 
 const pages = [
   { item: "Products", link: "/products" },
@@ -38,6 +39,9 @@ export default function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  /* shopping cart */
+  const { shoppingCart } = React.useContext(ShoppingCartContext);
 
   return (
     <AppBar position="static">
@@ -102,7 +106,8 @@ export default function NavBar() {
               <Typography
                 sx={{ textAlign: "center", paddingX: "16px", paddingY: "6px" }}
               >
-                # Items added
+                {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items
+                added
               </Typography>
               {/* </MenuItem> */}
             </Menu>
@@ -147,7 +152,7 @@ export default function NavBar() {
                 padding: "6px 8px",
               }}
             >
-              # Items Added
+              {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items Added
             </Typography>
           </Box>
 

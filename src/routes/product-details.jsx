@@ -1,12 +1,13 @@
 import Grid from "@mui/material/Grid2";
 import { Box, Button, Paper, Typography, styled } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import NumberInput from "../components/QuantityInput";
 
 import { useSearchParams, useParams } from "react-router-dom";
 
 import NumInput from "../components/NumInput";
 import useFetchProductData from "../components/useFetchProductData";
+import { ShoppingCartContext } from "../components/ShoppingCartContext";
 
 export default function ProductDetails() {
   /*   const product = {
@@ -22,6 +23,27 @@ export default function ProductDetails() {
   // const { products, error, loading } = useFetchProductData();
   // const product = products.find((product) => product.id === params.productId);
   // console.log(`product: ${product?.title} `, ` paramsId `, params.productId);
+
+  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
+  const handleShoppingCart = (e) => {
+    let addedProduct = null;
+
+    if (shoppingCart.length > 0)
+      addedProduct = shoppingCart.find((item) => item.id === product?.id);
+
+    if (addedProduct) {
+      let newShoppingCart = [...shoppingCart];
+
+      setShoppingCart(
+        newShoppingCart.map((item) => {
+          if (item.id === product?.id) return product;
+          return item;
+        })
+      );
+    } else {
+      setShoppingCart([...shoppingCart, product]);
+    }
+  };
 
   const [product, setProduct] = useState({});
   const [error, setError] = useState(null);
@@ -121,7 +143,7 @@ export default function ProductDetails() {
                 <Button
                   variant="contained"
                   sx={{ backgroundColor: "#9e9e9e" }}
-                  // onClick
+                  onClick={handleShoppingCart}
                 >
                   Add to Cart
                 </Button>
