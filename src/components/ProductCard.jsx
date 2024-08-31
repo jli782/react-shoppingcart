@@ -23,7 +23,9 @@ export default function ProductCard({ productDetails }) {
       </CardOverflow>
       <CardContent>
         <Typography level="title-md">{productDetails.title}</Typography>
-        <Typography level="body-sm">${productDetails.price}</Typography>
+        <Typography level="body-sm">
+          ${parseFloat(productDetails.price).toFixed(2)}
+        </Typography>
       </CardContent>
       <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
         <Divider inset="context" />

@@ -11,6 +11,13 @@ export default function Products() {
   const { products, error, loading } = useFetchProductData();
   return (
     <Box sx={{ flexGrow: 1 }}>
+      {loading && (
+        <Typography
+          sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
+        >
+          <i>Loading Products ...</i>
+        </Typography>
+      )}
       {error ? (
         <Typography
           sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
@@ -31,13 +38,6 @@ export default function Products() {
             </Grid>
           ))}
         </Grid>
-      )}
-      {loading && (
-        <Typography
-          sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
-        >
-          <i>Loading Products ...</i>
-        </Typography>
       )}
     </Box>
   );
