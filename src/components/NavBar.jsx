@@ -104,7 +104,11 @@ export default function NavBar() {
               ))}
               {/* <MenuItem key={"user items added"} onClick={handleCloseNavMenu}> */}
               <Typography
-                sx={{ textAlign: "center", paddingX: "16px", paddingY: "6px" }}
+                sx={{
+                  textAlign: "center",
+                  paddingX: "16px",
+                  paddingY: "6px",
+                }}
               >
                 {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items
                 added
@@ -152,7 +156,14 @@ export default function NavBar() {
                 padding: "6px 8px",
               }}
             >
-              {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items Added
+              {/* {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items Added */}
+              {shoppingCart.length > 0
+                ? shoppingCart.reduce((accumulator, currItem) => {
+                    console.log(`currItem ${currItem.quantity}`);
+                    return accumulator + parseInt(currItem.quantity);
+                  }, 0)
+                : "#"}{" "}
+              Items Added
             </Typography>
           </Box>
 

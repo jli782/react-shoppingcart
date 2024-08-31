@@ -36,12 +36,16 @@ export default function ProductDetails() {
 
       setShoppingCart(
         newShoppingCart.map((item) => {
-          if (item.id === product?.id) return product;
+          if (item.id === product?.id)
+            return {
+              ...product,
+              quantity: parseInt(item.quantity) + parseInt(quantity),
+            };
           return item;
         })
       );
     } else {
-      setShoppingCart([...shoppingCart, product]);
+      setShoppingCart([...shoppingCart, { ...product, quantity: quantity }]);
     }
   };
 
@@ -70,7 +74,7 @@ export default function ProductDetails() {
     return () => (ignore = !ignore);
   }, []);
 
-  const Item = styled(Paper)(({ theme }) => ({
+  /*   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(1),
@@ -79,13 +83,13 @@ export default function ProductDetails() {
     // ...theme.applyStyles("dark", {
     //   backgroundColor: "#1A2027",
     // }),
-  }));
+  })); */
 
   const [quantity, setQuantity] = useState(0);
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
         {loading ? (
           <Typography
             sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
@@ -101,45 +105,59 @@ export default function ProductDetails() {
         ) : (
           <Grid container spacing={2}>
             <Grid size={6}>
-              <Item>size=6</Item>
-              <Item>
-                <h1>{product.title}</h1>
-              </Item>
-              <Item>
-                <h2>
-                  <b>Pricing: </b>${parseFloat(product.price).toFixed(2)}
-                </h2>
-              </Item>
-              <Item>
+              <Typography
+                variant="h4"
+                sx={{ display: "block", textAlign: "center", margin: "auto" }}
+              >
+                {product.title}
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{ display: "block", textAlign: "center", margin: "auto" }}
+              >
+                <b>Pricing: </b>${parseFloat(product.price).toFixed(2)}
+              </Typography>
+              <Typography
+                sx={{
+                  display: "block",
+                  textAlign: "center",
+                  marginY: "0.5rem",
+                  marginX: "auto",
+                }}
+              >
                 <b>Categories:</b> {product.category}
-              </Item>
-              <Item>{product.description}</Item>
-              <Item>
-                {/* <NumberInput
-                aria-label="Quantity Input"
-                min={0}
-                onChange={(e, val) => {
-                  console.log(`${e.type} event: the new value is ${val}`);
-                  setQuantity((val) => val);
+              </Typography>
+              <Typography
+                sx={{
+                  display: "block",
+                  textAlign: "center",
+                  marginY: "0.5rem",
+                  marginX: "auto",
                 }}
-              /> */}
-                <NumInput min={0} />
-              </Item>
-              {/*               <b>Quantity: </b>
-              <input
-                min={0}
-                value={quantity}
-                // defaultValue={quantity > 0 ? quantity : product.quantity}
-                type="number"
-                onChange={(e, val) => {
-                  console.log(`val ${val}, ${e.target.value}`);
-                  console.log(`quantity ${quantity}`);
-                  const value = e.target.value;
-                  setQuantity(value);
+              >
+                {product.description}
+              </Typography>
+              <Typography
+                sx={{
+                  display: "block",
+                  textAlign: "center",
+                  marginY: "0.5rem",
+                  marginX: "auto",
                 }}
-              />
- */}
-              <Item>
+              >
+                <NumInput
+                  min={0}
+                  quantity={{ quantity: quantity, setQuantity: setQuantity }}
+                />
+              </Typography>
+              <Typography
+                sx={{
+                  display: "block",
+                  textAlign: "center",
+                  marginY: "0.5rem",
+                  marginX: "auto",
+                }}
+              >
                 <Button
                   variant="contained"
                   sx={{ backgroundColor: "#9e9e9e" }}
@@ -147,7 +165,7 @@ export default function ProductDetails() {
                 >
                   Add to Cart
                 </Button>
-              </Item>
+              </Typography>
             </Grid>
             <Grid size={6}>
               {/* <Item>size=6</Item> */}
@@ -161,6 +179,7 @@ export default function ProductDetails() {
                   borderRadius: 20,
                   // width: "75%",
                 }}
+                alt={product.title + " image"}
               ></img>
             </Grid>
           </Grid>

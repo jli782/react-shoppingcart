@@ -8,6 +8,7 @@ import Root from "./routes/root.jsx";
 import ErrorPage from "./components/errorPage.jsx";
 import ProductDetails from "./routes/product-details.jsx";
 import Products from "./routes/products.jsx";
+import ShoppingCart from "./routes/shopping-cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       { path: "/products", element: <Products /> },
+      {
+        path: "/shopping-cart",
+        element: <ShoppingCart />,
+      },
     ],
   },
 ]);

@@ -10,7 +10,7 @@ import useFetchProductData from "../components/useFetchProductData";
 export default function Products() {
   const { products, error, loading } = useFetchProductData();
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
       {loading && (
         <Typography
           sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}

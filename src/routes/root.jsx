@@ -11,14 +11,14 @@ export default function Root() {
     <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }}>
       <section>
         <NavBar />
-        <h1
+        {/* <h1
           style={{
             display: "flex",
             justifyContent: "center",
           }}
         >
           React Shopping Cart!
-        </h1>
+        </h1> */}
         <div>
           <Outlet />
         </div>
