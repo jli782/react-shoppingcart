@@ -17,18 +17,39 @@ export default function ShoppingCart() {
       >
         Shopping Cart List
       </Typography>
+      {!shoppingCart && (
+        <Grid container>
+          <Typography
+            variant="h6"
+            sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
+          >
+            Loading shopping cart items ...
+          </Typography>
+        </Grid>
+      )}
       <Grid
         container
         /*         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }} */
       >
-        {shoppingCart.map((product) => (
-          <Grid key={product.title} size={{ xs: 12, sm: 12, md: 12 }}>
-            <ShoppingCartCard productDetails={product}></ShoppingCartCard>
+        {shoppingCart.length > 0 ? (
+          shoppingCart.map((product) => (
+            <Grid key={product.title} size={{ xs: 12, sm: 12, md: 12 }}>
+              <ShoppingCartCard productDetails={product}></ShoppingCartCard>
+            </Grid>
+          ))
+        ) : (
+          <Grid size={{ xs: 12, sm: 12, md: 12 }}>
+            <Typography
+              variant="h6"
+              sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
+            >
+              Currently 0 items added to shopping cart.
+            </Typography>
           </Grid>
-        ))}
+        )}
         <Grid size={{ xs: 12, sm: 12, md: 12 }} sx={{ textAlign: "right" }}>
-          <Typography variant="h6" size={{ xs: 12, sm: 12, md: 12 }}>
+          <Typography variant="h6" size={{ xs: 4, sm: 4, md: 12 }}>
             <b>Total: </b>
             {shoppingCart.length > 0
               ? "$" +

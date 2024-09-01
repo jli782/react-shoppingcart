@@ -4,6 +4,9 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
+import { Button } from "@mui/material";
+
+import { Link } from "react-router-dom";
 
 export default function RowCard({ ...props }) {
   return (
@@ -48,9 +51,15 @@ export default function RowCard({ ...props }) {
           textTransform: "uppercase",
           borderLeft: "1px solid",
           borderColor: "divider",
+          ":hover": {
+            color: "#ffccbc",
+            backgroundColor: "#ffccbc",
+          },
         }}
       >
-        Item
+        <Link to={`../products/${props.productDetails.id}`}>
+          <Button variant="text">View Item</Button>
+        </Link>
       </CardOverflow>
     </Card>
   );

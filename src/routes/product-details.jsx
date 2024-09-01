@@ -49,7 +49,7 @@ export default function ProductDetails() {
     }
   };
 
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const params = useParams();
@@ -87,6 +87,7 @@ export default function ProductDetails() {
 
   const [quantity, setQuantity] = useState(0);
 
+  console.log(product, `product`);
   return (
     <>
       <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
@@ -147,7 +148,10 @@ export default function ProductDetails() {
               >
                 <NumInput
                   min={0}
-                  quantity={{ quantity: quantity, setQuantity: setQuantity }}
+                  quantity={{
+                    quantity: quantity,
+                    setQuantity: setQuantity,
+                  }}
                 />
               </Typography>
               <Typography
@@ -160,7 +164,10 @@ export default function ProductDetails() {
               >
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#9e9e9e" }}
+                  sx={{
+                    backgroundColor: "#9e9e9e",
+                    ":hover": { backgroundColor: "#424242" },
+                  }}
                   onClick={handleShoppingCart}
                 >
                   Add to Cart

@@ -140,7 +140,14 @@ export default function NavBar() {
               <Link to={`${page.link}`} key={page.item}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    ":hover": {
+                      /*  color: "#0d47a1", */ backgroundColor: "#0d47a1",
+                    },
+                  }}
                 >
                   {page.item}
                 </Button>
