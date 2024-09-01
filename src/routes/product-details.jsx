@@ -1,7 +1,19 @@
 import Grid from "@mui/material/Grid2";
-import { Box, Button, Paper, Typography, styled } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  Typography,
+  styled,
+} from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import NumberInput from "../components/QuantityInput";
+
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
+import Collapse from "@mui/material/Collapse";
 
 import { useSearchParams, useParams } from "react-router-dom";
 
@@ -47,6 +59,7 @@ export default function ProductDetails() {
     } else {
       setShoppingCart([...shoppingCart, { ...product, quantity: quantity }]);
     }
+    setAdded(true);
   };
 
   const [product, setProduct] = useState(null);
@@ -91,9 +104,42 @@ export default function ProductDetails() {
   );
 
   console.log(product, `product`);
+
+  const [added, setAdded] = useState(false);
+
   return (
     <>
       <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
+        {added && (
+          // <Typography
+          //   sx={{
+          //     display: "block",
+          //     textAlign: "center",
+          //     margin: "0.5rem",
+          //   }}
+          // >
+          <Collapse in={added}>
+            <Alert
+              icon={<CheckIcon fontSize="inherit" />}
+              severity="success"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setAdded(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Product {params.productId} added successfully to shopping cart!
+            </Alert>
+          </Collapse>
+          // </Typography>
+        )}
         {loading ? (
           <Typography
             sx={{ display: "block", textAlign: "center", margin: "0.5rem" }}
