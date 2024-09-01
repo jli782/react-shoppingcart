@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import Box from "@mui/material/Box";
+import { useContext, useState } from "react";
 import Grid from "@mui/material/Grid2";
-import { Typography } from "@mui/material";
+import { Alert, Box, Collapse, IconButton, Typography } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 
 import ShoppingCartCard from "../components/ShoppingCartCard";
 import { ShoppingCartContext } from "../components/ShoppingCartContext";
@@ -9,6 +10,15 @@ import { ShoppingCartContext } from "../components/ShoppingCartContext";
 export default function ShoppingCart() {
   const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
 
+  const [deletingProduct, setDeletingProduct] = useState(null);
+
+  const onDeleteHandler = (e) => {
+    console.log(e.target.name, `e.target`);
+    setShoppingCart(
+      shoppingCart.filter((item) => item.id !== parseInt(e.target.name))
+    );
+    setDeletingProduct(e.target.name);
+  };
   return (
     <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
       <Typography
@@ -17,6 +27,28 @@ export default function ShoppingCart() {
       >
         Shopping Cart List
       </Typography>
+      {deletingProduct && (
+        <Collapse in={deletingProduct}>
+          <Alert
+            icon={<CheckIcon fontSize="inherit" />}
+            severity="success"
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setDeletingProduct(null);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+          >
+            Product {deletingProduct} deleted successfully from shopping cart!
+          </Alert>
+        </Collapse>
+      )}
       {!shoppingCart && (
         <Grid container>
           <Typography
@@ -35,7 +67,10 @@ export default function ShoppingCart() {
         {shoppingCart.length > 0 ? (
           shoppingCart.map((product) => (
             <Grid key={product.title} size={{ xs: 12, sm: 12, md: 12 }}>
-              <ShoppingCartCard productDetails={product}></ShoppingCartCard>
+              <ShoppingCartCard
+                productDetails={product}
+                handleDelete={onDeleteHandler}
+              ></ShoppingCartCard>
             </Grid>
           ))
         ) : (
