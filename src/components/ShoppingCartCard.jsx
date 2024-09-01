@@ -58,7 +58,7 @@ export default function RowCard({ ...props }) {
         }}
       >
         <Link to={`../products/${props.productDetails.id}`}>
-          <Button variant="text">View Item</Button>
+          <Button variant="text">Edit Item</Button>
         </Link>
       </CardOverflow>
     </Card>

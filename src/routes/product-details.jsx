@@ -85,7 +85,10 @@ export default function ProductDetails() {
     // }),
   })); */
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(
+    shoppingCart.find((item) => item.id === parseInt(params.productId))
+      ?.quantity || 0
+  );
 
   console.log(product, `product`);
   return (
