@@ -185,7 +185,7 @@ export default function ProductDetails() {
             <i>Product {params.productId} Not Found.</i>
           </Typography>
         ) : (
-          <Grid container spacing={2}>
+          <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
             <Grid size={6}>
               <Typography
                 variant="h4"
@@ -261,7 +261,7 @@ export default function ProductDetails() {
               <img
                 src={product.image}
                 style={{
-                  maxWidth: 350,
+                  maxWidth: 350 /* 300 */,
                   marginLeft: "auto",
                   marginRight: "auto",
                   display: "block",
@@ -269,6 +269,7 @@ export default function ProductDetails() {
                   // width: "75%",
                 }}
                 alt={product.title + " image"}
+                className="shopping-image"
               ></img>
             </Grid>
           </Grid>
