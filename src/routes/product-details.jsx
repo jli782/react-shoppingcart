@@ -233,6 +233,7 @@ export default function ProductDetails() {
                     quantity: quantity,
                     setQuantity: setQuantity,
                   }}
+                  setAdded={setAdded}
                 />
               </Typography>
               <Typography

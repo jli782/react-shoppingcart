@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function NumInput({ min, quantity }) {
+export default function NumInput({ min, quantity, setAdded }) {
   // const [quantity, setQuantity] = useState(0);
 
   return (
@@ -16,7 +16,7 @@ export default function NumInput({ min, quantity }) {
         type="number"
         onChange={(e) => {
           console.log(quantity.quantity, `quantity`);
-
+          setAdded(false);
           if (parseInt(e.target.value) > 0)
             quantity.setQuantity(e.target.value);
         }}
