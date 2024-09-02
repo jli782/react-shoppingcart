@@ -17,7 +17,7 @@ import { ShoppingCartContext } from "../components/ShoppingCartContext";
 export default function ShoppingCart() {
   const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
 
-  const [deletingProduct, setDeletingProduct] = useState(null);
+  const [deletingProduct, setDeletingProduct] = useState("");
 
   const onDeleteHandler = (e) => {
     console.log(e.target.name, `e.target`);
@@ -45,7 +45,7 @@ export default function ShoppingCart() {
                 color="inherit"
                 size="small"
                 onClick={() => {
-                  setDeletingProduct(null);
+                  setDeletingProduct("");
                 }}
               >
                 <CloseIcon fontSize="inherit" />
@@ -91,7 +91,7 @@ export default function ShoppingCart() {
           </Grid>
         )}
 
-        <Grid size={{ xs: 4, sm: 4, md: 12 }} sx={{ textAlign: "right" }}>
+        <Grid size={{ xs: 12, sm: 12, md: 12 }} sx={{ textAlign: "right" }}>
           <Typography
             variant="h6"
             size={{ xs: 4, sm: 4, md: 12 }}
