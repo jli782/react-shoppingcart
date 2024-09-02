@@ -63,7 +63,20 @@ export default function NavBar() {
               textDecoration: "none",
             }}
           >
-            SHOPPING CART LOGO
+            <Link
+              to="/"
+              style={{
+                marginRight: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              SHOPPING CART LOGO
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -133,7 +146,21 @@ export default function NavBar() {
               textDecoration: "none",
             }}
           >
-            SHOPPING CART LOGO
+            <Link
+              to="/"
+              style={{
+                marginRight: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".15rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              SHOPPING CART LOGO
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
