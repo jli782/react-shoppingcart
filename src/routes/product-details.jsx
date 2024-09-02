@@ -39,25 +39,27 @@ export default function ProductDetails() {
   const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
   const handleShoppingCart = (e) => {
     let addedProduct = null;
-
+    console.log(quantity, ` handlingShoppingCart`);
     if (shoppingCart.length > 0)
       addedProduct = shoppingCart.find((item) => item.id === product?.id);
 
-    if (addedProduct) {
-      let newShoppingCart = [...shoppingCart];
+    if (quantity > 0) {
+      if (addedProduct) {
+        let newShoppingCart = [...shoppingCart];
 
-      setShoppingCart(
-        newShoppingCart.map((item) => {
-          if (item.id === product?.id)
-            return {
-              ...product,
-              quantity: parseInt(item.quantity) + parseInt(quantity),
-            };
-          return item;
-        })
-      );
-    } else {
-      setShoppingCart([...shoppingCart, { ...product, quantity: quantity }]);
+        setShoppingCart(
+          newShoppingCart.map((item) => {
+            if (item.id === product?.id)
+              return {
+                ...product,
+                quantity: /* parseInt(item.quantity) + */ parseInt(quantity),
+              };
+            return item;
+          })
+        );
+      } else {
+        setShoppingCart([...shoppingCart, { ...product, quantity: quantity }]);
+      }
     }
     setAdded(true);
   };
@@ -110,7 +112,7 @@ export default function ProductDetails() {
   return (
     <>
       <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
-        {added && (
+        {added && quantity > 0 && (
           // <Typography
           //   sx={{
           //     display: "block",
@@ -136,6 +138,36 @@ export default function ProductDetails() {
               }
             >
               Product {params.productId} added successfully to shopping cart!
+            </Alert>
+          </Collapse>
+          // </Typography>
+        )}
+        {added && quantity <= 0 && (
+          // <Typography
+          //   sx={{
+          //     display: "block",
+          //     textAlign: "center",
+          //     margin: "0.5rem",
+          //   }}
+          // >
+          <Collapse in={added}>
+            <Alert
+              icon={<CheckIcon fontSize="inherit" />}
+              severity="warning"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setAdded(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Product quantity must not be 0!
             </Alert>
           </Collapse>
           // </Typography>

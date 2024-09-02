@@ -1,6 +1,13 @@
 import { useContext, useState } from "react";
 import Grid from "@mui/material/Grid2";
-import { Alert, Box, Collapse, IconButton, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Collapse,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -83,8 +90,13 @@ export default function ShoppingCart() {
             </Typography>
           </Grid>
         )}
-        <Grid size={{ xs: 12, sm: 12, md: 12 }} sx={{ textAlign: "right" }}>
-          <Typography variant="h6" size={{ xs: 4, sm: 4, md: 12 }}>
+
+        <Grid size={{ xs: 4, sm: 4, md: 12 }} sx={{ textAlign: "right" }}>
+          <Typography
+            variant="h6"
+            size={{ xs: 4, sm: 4, md: 12 }}
+            sx={{ marginRight: "3px" }}
+          >
             <b>Total: </b>
             {shoppingCart.length > 0
               ? "$" +
@@ -96,6 +108,9 @@ export default function ShoppingCart() {
                   .toFixed(2)
               : "N/A"}
           </Typography>
+          <Button variant="contained" sx={{ marginY: 2 }}>
+            Pay Now
+          </Button>
         </Grid>
       </Grid>
     </Box>

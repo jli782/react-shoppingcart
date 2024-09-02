@@ -16,7 +16,9 @@ export default function NumInput({ min, quantity }) {
         type="number"
         onChange={(e) => {
           console.log(quantity.quantity, `quantity`);
-          quantity.setQuantity(e.target.value);
+
+          if (parseInt(e.target.value) > 0)
+            quantity.setQuantity(e.target.value);
         }}
       />
     </>
