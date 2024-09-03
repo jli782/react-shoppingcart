@@ -1,13 +1,5 @@
 import Grid from "@mui/material/Grid2";
-import {
-  Alert,
-  Box,
-  Button,
-  IconButton,
-  Paper,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Alert, Box, Button, IconButton, Typography } from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import NumberInput from "../components/QuantityInput";
 
@@ -15,26 +7,31 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
 
-import { useSearchParams, useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 import NumInput from "../components/NumInput";
-import useFetchProductData from "../components/useFetchProductData";
 import { ShoppingCartContext } from "../components/ShoppingCartContext";
 
+export async function loader({ params }) {
+  try {
+    const res = await fetch(
+      `https://fakestoreapi.com/products/${params.productId}`
+    );
+
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+
+    const product = await res.json();
+    return product;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default function ProductDetails() {
-  /*   const product = {
-    id: 1,
-    title: "A sample product",
-    price: "$ 99.99",
-    category: "Samples",
-    description: "A sample description of the product.",
-    image: "https://i.imgur.com/nEXMMYa.jpeg",
-    quantity: 1,
-  }; */
-  // const params = useParams();
-  // const { products, error, loading } = useFetchProductData();
-  // const product = products.find((product) => product.id === params.productId);
-  // console.log(`product: ${product?.title} `, ` paramsId `, params.productId);
+  const _product = useLoaderData();
+  console.log(_product, `_product`);
 
   const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
   const handleShoppingCart = (e) => {
@@ -89,17 +86,6 @@ export default function ProductDetails() {
     return () => (ignore = !ignore);
   }, []);
 
-  /*   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    // ...theme.applyStyles("dark", {
-    //   backgroundColor: "#1A2027",
-    // }),
-  })); */
-
   const [quantity, setQuantity] = useState(
     shoppingCart.find((item) => item.id === parseInt(params.productId))
       ?.quantity || 0
@@ -137,7 +123,7 @@ export default function ProductDetails() {
                 </IconButton>
               }
             >
-              Product {params.productId} added successfully to shopping cart!
+              Product {_product.id} added successfully to shopping cart!
             </Alert>
           </Collapse>
           // </Typography>
@@ -191,13 +177,13 @@ export default function ProductDetails() {
                 variant="h4"
                 sx={{ display: "block", textAlign: "center", margin: "auto" }}
               >
-                {product.title}
+                {_product.title}
               </Typography>
               <Typography
                 variant="h6"
                 sx={{ display: "block", textAlign: "center", margin: "auto" }}
               >
-                <b>Pricing: </b>${parseFloat(product.price).toFixed(2)}
+                <b>Pricing: </b>${parseFloat(_product.price).toFixed(2)}
               </Typography>
               <Typography
                 sx={{
@@ -207,7 +193,7 @@ export default function ProductDetails() {
                   marginX: "auto",
                 }}
               >
-                <b>Categories:</b> {product.category}
+                <b>Categories:</b> {_product.category}
               </Typography>
               <Typography
                 sx={{
@@ -217,7 +203,7 @@ export default function ProductDetails() {
                   marginX: "auto",
                 }}
               >
-                {product.description}
+                {_product.description}
               </Typography>
               <Typography
                 sx={{
@@ -259,7 +245,7 @@ export default function ProductDetails() {
             <Grid size={6}>
               {/* <Item>size=6</Item> */}
               <img
-                src={product.image}
+                src={_product.image}
                 style={{
                   maxWidth: 350 /* 300 */,
                   marginLeft: "auto",
@@ -268,7 +254,7 @@ export default function ProductDetails() {
                   borderRadius: 20,
                   // width: "75%",
                 }}
-                alt={product.title + " image"}
+                alt={_product.title + " image"}
                 className="shopping-image"
               ></img>
             </Grid>
