@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid2";
 import Typography from "@mui/joy/Typography";
 import { Button, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Tooltip from "@mui/material/Tooltip";
 
 import { Link } from "react-router-dom";
 
@@ -46,15 +47,17 @@ export default function RowCard({ ...props }) {
             </Typography>
           </Grid>
           <Grid>
+            {" "}
             <Button
               sx={{
                 paddingX: 0,
                 paddingY: "5px",
                 // position: "absolute",
-                // bottom: 0,
+                bottom: 0,
               }}
               onClick={props.handleDelete}
               name={props.productDetails.id}
+              id="delete-shopping-cart-item"
             >
               {/* <DeleteIcon /> */}
               Delete item

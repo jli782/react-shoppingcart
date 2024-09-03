@@ -55,8 +55,17 @@ code {
     monospace;
 }
 
+#delete-shopping-cart-item{
+  position: absolute;
+}
 @media only screen and (max-width: 400px) {
   .shopping-image {
     width: 300px;
   }
+  #delete-shopping-cart-item{
+    position: static;
+    /* font-size: "smaller"; */
+    
+  }
 } 
+
