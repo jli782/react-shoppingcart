@@ -5,7 +5,8 @@ import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/joy/Typography";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { Link } from "react-router-dom";
 
@@ -49,12 +50,13 @@ export default function RowCard({ ...props }) {
               sx={{
                 paddingX: 0,
                 paddingY: "5px",
-                position: "absolute",
-                bottom: 0,
+                // position: "absolute",
+                // bottom: 0,
               }}
               onClick={props.handleDelete}
               name={props.productDetails.id}
             >
+              {/* <DeleteIcon /> */}
               Delete item
             </Button>
           </Grid>
