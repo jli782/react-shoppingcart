@@ -6,6 +6,7 @@ import NumberInput from "../components/QuantityInput";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
+import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 
 import { useLoaderData, useParams } from "react-router-dom";
 
@@ -238,7 +239,8 @@ export default function ProductDetails() {
                   }}
                   onClick={handleShoppingCart}
                 >
-                  Add to Cart
+                  <AddShoppingCartOutlinedIcon />
+                  &nbsp;Add to Cart
                 </Button>
               </Typography>
             </Grid>

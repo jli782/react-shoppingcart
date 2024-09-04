@@ -43,6 +43,9 @@ export default function NavBar() {
   /* shopping cart */
   const { shoppingCart } = React.useContext(ShoppingCartContext);
 
+  /* actve app bar button */
+  const [active, setActive] = React.useState(null);
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -123,8 +126,13 @@ export default function NavBar() {
                   paddingY: "6px",
                 }}
               >
-                {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items
-                added
+                {shoppingCart.length > 0
+                  ? shoppingCart.reduce((accumulator, currItem) => {
+                      console.log(`currItem ${currItem.quantity}`);
+                      return accumulator + parseInt(currItem.quantity);
+                    }, 0)
+                  : "#"}{" "}
+                Items Added
               </Typography>
               {/* </MenuItem> */}
             </Menu>
@@ -166,7 +174,10 @@ export default function NavBar() {
             {pages.map((page) => (
               <Link to={`${page.link}`} key={page.item}>
                 <Button
-                  onClick={handleCloseNavMenu}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    setActive(page.item);
+                  }}
                   sx={{
                     my: 2,
                     color: "white",
@@ -175,6 +186,7 @@ export default function NavBar() {
                       /*  color: "#0d47a1", */ backgroundColor: "#0d47a1",
                     },
                   }}
+                  id={active === page.item ? "active" : "inactive"}
                 >
                   {page.item}
                 </Button>

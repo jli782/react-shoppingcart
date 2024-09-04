@@ -6,7 +6,8 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/joy/Typography";
 import { Button, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Tooltip from "@mui/material/Tooltip";
 
 import { Link } from "react-router-dom";
@@ -59,7 +60,7 @@ export default function RowCard({ ...props }) {
               name={props.productDetails.id}
               id="delete-shopping-cart-item"
             >
-              {/* <DeleteIcon /> */}
+              <DeleteOutlinedIcon />
               Delete item
             </Button>
           </Grid>
@@ -85,7 +86,10 @@ export default function RowCard({ ...props }) {
         }}
       >
         <Link to={`../products/${props.productDetails.id}`}>
-          <Button variant="text">Edit Item</Button>
+          <Button variant="text">
+            <EditOutlinedIcon />
+            Edit Item
+          </Button>
         </Link>
       </CardOverflow>
     </Card>

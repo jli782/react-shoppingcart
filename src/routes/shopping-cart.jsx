@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 import ShoppingCartCard from "../components/ShoppingCartCard";
 import { ShoppingCartContext } from "../components/ShoppingCartContext";
@@ -109,7 +110,8 @@ export default function ShoppingCart() {
               : "N/A"}
           </Typography>
           <Button variant="contained" sx={{ marginY: 2 }}>
-            Pay Now
+            <ShoppingCartOutlinedIcon />
+            &nbsp; Pay Now
           </Button>
         </Grid>
       </Grid>
