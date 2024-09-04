@@ -111,7 +111,13 @@ export default function NavBar() {
             >
               {pages.map((page) => (
                 <Link to={`${page.link}`} key={page.item}>
-                  <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    onClick={() => {
+                      handleCloseNavMenu();
+                      setActive(page.item);
+                    }}
+                    id={active === page.item ? "active" : "inactive"}
+                  >
                     <Typography sx={{ textAlign: "center" }}>
                       {page.item}
                     </Typography>
