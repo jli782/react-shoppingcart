@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
+import InputAdornment from "@mui/material/InputAdornment";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 
 import ProductCard from "../components/ProductCard";
-import { Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import useFetchProductData from "../components/useFetchProductData";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Form } from "react-router-dom";
 
-export async function loader() {
+export async function loader({ request }) {
   try {
     const res = await fetch("https://fakestoreapi.com/products");
 
@@ -28,6 +31,8 @@ export default function Products() {
 
   const _products = useLoaderData();
 
+  const [search, setSearch] = useState("");
+
   return (
     <Box sx={{ flexGrow: 1, margin: "1.5rem" }}>
       {loading && (
@@ -44,19 +49,53 @@ export default function Products() {
           <i>No Products for Sale.</i>
         </Typography>
       ) : (
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {_products.map((product) => (
-            <Grid key={product.title} size={{ xs: 12, sm: 4, md: 4 }}>
-              <ProductCard productDetails={product}>
-                {product.title + "1"}
-              </ProductCard>
-            </Grid>
-          ))}
-        </Grid>
+        <>
+          <TextField
+            id="outlined-controlled"
+            label="Search Products"
+            value={search}
+            onInput={(e) => {
+              setSearch(e.target.value);
+            }}
+            size="small"
+            sx={{ marginY: "0.5rem" }}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchSharpIcon />
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
+          <Grid
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 4, sm: 8, md: 12 }}
+          >
+            {search.length > 0 &&
+              _products
+                .filter((item) =>
+                  item.title.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((product) => (
+                  <Grid key={product.title} size={{ xs: 12, sm: 4, md: 4 }}>
+                    <ProductCard productDetails={product}>
+                      {product.title + "1"}
+                    </ProductCard>
+                  </Grid>
+                ))}
+            {!search.length &&
+              _products.map((product) => (
+                <Grid key={product.title} size={{ xs: 12, sm: 4, md: 4 }}>
+                  <ProductCard productDetails={product}>
+                    {product.title + "1"}
+                  </ProductCard>
+                </Grid>
+              ))}
+          </Grid>
+        </>
       )}
     </Box>
   );
