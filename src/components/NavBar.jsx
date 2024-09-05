@@ -77,6 +77,7 @@ export default function NavBar() {
                 color: "inherit",
                 textDecoration: "none",
               }}
+              onClick={() => setActive(null)}
             >
               SHOPPING CART LOGO
             </Link>
@@ -172,6 +173,7 @@ export default function NavBar() {
                 color: "inherit",
                 textDecoration: "none",
               }}
+              onClick={() => setActive(null)}
             >
               SHOPPING CART LOGO
             </Link>
