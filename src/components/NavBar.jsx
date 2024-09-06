@@ -117,7 +117,10 @@ export default function NavBar() {
                       handleCloseNavMenu();
                       setActive(page.item);
                     }}
-                    id={active === page.item ? "active" : "inactive"}
+                    sx={{
+                      backgroundColor:
+                        active === page.item ? `#97c5f6` : `#fff`,
+                    }}
                   >
                     <Typography sx={{ textAlign: "center" }}>
                       {page.item}
@@ -193,8 +196,9 @@ export default function NavBar() {
                     ":hover": {
                       /*  color: "#0d47a1", */ backgroundColor: "#0d47a1",
                     },
+                    backgroundColor:
+                      active === page.item ? `#97c5f6` : `#1976d2`,
                   }}
-                  id={active === page.item ? "active" : "inactive"}
                 >
                   {page.item}
                 </Button>

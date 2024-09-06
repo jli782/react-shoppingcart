@@ -68,12 +68,7 @@ code {
 a:link {
   text-decoration: none;
 }
-#active {
-  background-color: #97c5f6;
-}
-#inactive {
-  background-color: #1976d2; 
-}
+
 /* zero-state for index.jsx */
 #zero-state {
   margin: 2rem auto;
@@ -103,10 +98,4 @@ a:link {
     position: static;
     /* font-size: "smaller"; */    
   }
-  #active {
-    background-color: #97c5f6;
-  }
-  #inactive {
-    background-color: #fff; 
-  } 
 } 
