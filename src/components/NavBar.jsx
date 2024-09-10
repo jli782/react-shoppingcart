@@ -136,7 +136,7 @@ export default function NavBar() {
                   paddingY: "6px",
                 }}
               >
-                {shoppingCart.length > 0
+                {shoppingCart /* .length > 0 */
                   ? shoppingCart.reduce((accumulator, currItem) => {
                       console.log(`currItem ${currItem.quantity}`);
                       return accumulator + parseInt(currItem.quantity);
@@ -215,7 +215,7 @@ export default function NavBar() {
               }}
             >
               {/* {shoppingCart.length > 0 ? shoppingCart.length : "#"} Items Added */}
-              {shoppingCart.length > 0
+              {shoppingCart /* .length > 0 */
                 ? shoppingCart.reduce((accumulator, currItem) => {
                     console.log(`currItem ${currItem.quantity}`);
                     return accumulator + parseInt(currItem.quantity);
