@@ -20,6 +20,7 @@ export default function NumInput({ min, quantity, setAdded }) {
           if (parseInt(e.target.value) > 0)
             quantity.setQuantity(e.target.value);
         }}
+        data-testid="numinput"
       />
     </>
   );
