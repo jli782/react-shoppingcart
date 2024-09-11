@@ -18,7 +18,7 @@ export default function NumInput({ min, quantity, setAdded }) {
           console.log(quantity.quantity, `quantity`);
           setAdded(false);
           if (parseInt(e.target.value) > 0)
-            quantity.setQuantity(e.target.value);
+            quantity.setQuantity(e.target.value.replace(/^0*/, ""));
         }}
         data-testid="numinput"
       />
