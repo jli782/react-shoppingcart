@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export default function NumInput({ min, quantity, setAdded }) {
   // const [quantity, setQuantity] = useState(0);
@@ -25,3 +26,15 @@ export default function NumInput({ min, quantity, setAdded }) {
     </>
   );
 }
+
+NumInput.propTypes = {
+  min: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired || PropTypes.string.isRequired,
+  setAdded: PropTypes.func.isRequired,
+};
+
+NumInput.defaultProps = {
+  min: 0,
+  quantity: 1 || `1`,
+  setAdded: () => 1,
+};
