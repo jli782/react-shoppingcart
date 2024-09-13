@@ -1,5 +1,12 @@
 import Grid from "@mui/material/Grid2";
-import { Alert, Box, Button, IconButton, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  IconButton,
+  Rating,
+  Typography,
+} from "@mui/material";
 import { useState, useEffect, useContext } from "react";
 import NumberInput from "../components/QuantityInput";
 
@@ -185,6 +192,25 @@ export default function ProductDetails() {
                 sx={{ display: "block", textAlign: "center", margin: "auto" }}
               >
                 <b>Pricing: </b>${parseFloat(_product.price).toFixed(2)}
+              </Typography>
+              <Typography
+                level="body-xs"
+                textColor="text.secondary"
+                sx={{
+                  fontWeight: "md",
+                  display: "block",
+                  textAlign: "center",
+                  margin: "auto",
+                }}
+              >
+                Rating:&nbsp;
+                <Rating
+                  name="read-only"
+                  value={_product.rating.rate}
+                  readOnly
+                  size="small"
+                />
+                &nbsp;{_product.rating.rate} ({_product.rating.count})
               </Typography>
               <Typography
                 sx={{
