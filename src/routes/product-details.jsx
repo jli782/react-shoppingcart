@@ -209,6 +209,7 @@ export default function ProductDetails() {
                   value={_product.rating.rate}
                   readOnly
                   size="small"
+                  sx={{ verticalAlign: "sub" }}
                 />
                 &nbsp;{_product.rating.rate} ({_product.rating.count})
               </Typography>
