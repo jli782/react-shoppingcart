@@ -8,7 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" width="50" height="50">
+[//]: <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" width="50" height="50">
 
 [![Vite](./public/vite.svg)](https://vitejs.dev)
 [![React](./src/assets/react.svg)](https://react.dev)
@@ -68,11 +68,11 @@ npm i
 npm run test
 ```
 
-## License
+[//]: ## (License)
 
-MIT
+	MIT
 
-**Free Software, As It should be.**
+	**Free Software, As It should be.**
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
